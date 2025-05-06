@@ -3,7 +3,7 @@
 Sitio web para mi agencia de automatización NeuraX. Estructura en React, conectada con formularios automatizados vía Make.
 
 ## 🛠️ Tecnologías
-- React + CSS
+- TypeScript + CSS + JS
 - Automatización con n8n para el formulario
 - Formularios IA para captar y procesar leads
 
