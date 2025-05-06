@@ -32,8 +32,10 @@ export default function RootLayout({
         />
       </head>
       <body className={`${rajdhani.variable} ${audiowide.variable} ${rajdhani.className}`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" disableSystemTheme>
-          {children}
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <div className="min-h-screen bg-background">
+            {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>

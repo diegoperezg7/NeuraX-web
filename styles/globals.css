@@ -6,6 +6,54 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+@layer components {
+  .glowing-button {
+    position: relative;
+    padding: 12px 24px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  .glowing-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    animation: shine 2s infinite;
+  }
+
+  @keyframes shine {
+    0% {
+      transform: translate(-100%, -100%);
+    }
+    100% {
+      transform: translate(100%, 100%);
+    }
+  }
+
+  .glowing-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+  }
+
+  .glowing-button svg {
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

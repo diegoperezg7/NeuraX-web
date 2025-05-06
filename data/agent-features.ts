@@ -69,8 +69,8 @@ export const agentData: { [key: string]: AgentData } = {
     ],
     subFeatures: {},
     stats: [
-      { label: "Productividad", value: "+45%" },
-      { label: "Errores", value: "-90%" }
+      { label: "Errores", value: "-90%" },
+      { label: "Productividad", value: "+45%" }
     ],
     gradient: "from-blue-600 to-purple-400"
   },
@@ -154,4 +154,4 @@ export const agentData: { [key: string]: AgentData } = {
     ],
     gradient: "from-purple-600 to-blue-400"
   }
-}; 
+};

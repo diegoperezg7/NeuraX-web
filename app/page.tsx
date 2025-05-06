@@ -250,6 +250,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
+            whileHover={{ scale: 1.05 }}
             className="mb-8"
           >
             <Image
@@ -560,8 +561,8 @@ export default function Home() {
       </section>
 
       {/* AI Agents Section */}
-      <section id="agents" className="py-20 relative z-10">
-        <div className="container mx-auto px-0 md:px-0 max-w-full">
+      <section id="agents" className="min-h-[100vh] relative z-10 overflow-hidden py-24"> {/* Aumentado el padding vertical */}
+          <div className="relative w-full px-0 max-w-none"> {/* Mejorado el padding horizontal */}
           <div className="text-center mb-16 relative px-4">
             {/* Decorative elements */}
             <div className="absolute left-1/2 -top-10 w-40 h-40 bg-purple-500/5 rounded-full blur-xl -translate-x-1/2"></div>
@@ -575,37 +576,37 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="relative w-full px-4 md:px-8 lg:px-12">
-            {/* Efecto de degradado para indicar desplazamiento */}
-            {/* Se eliminaron los degradados laterales */}
-            
+          <div className="relative w-full px-0">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="overflow-visible"
+              className="overflow-hidden w-full"
             >
               <Carousel
                 opts={{
                   align: "start",
                   loop: true,
                   dragFree: true,
-                  containScroll: false,
+                  containScroll: "trimSnaps",
                   inViewThreshold: 0.1,
                   skipSnaps: true,
+                  gap: 30,
+                  perPage: 3,
+                  perMove: 1
                 }}
                 className="w-full cursor-grab active:cursor-grabbing"
               >
-                <CarouselContent className="-ml-2 md:-ml-4">
+                <CarouselContent className="py-12">
                   {Object.values(agentData).map((agent, index) => (
-                    <CarouselItem key={agent.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 2xl:basis-1/4 h-[440px] py-3">
+                    <CarouselItem key={agent.id} className="md:basis-1/3 h-[450px] py-6 px-4 max-w-md">
                       <motion.div 
                         className="h-full"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         transition={{ type: "spring", stiffness: 400, damping: 10 }}
                       >
-            <AgentCard
+                        <AgentCard
                           icon={getAgentIcon(agent.iconType)}
                           name={agent.name}
                           description={agent.shortDescription}
@@ -618,7 +619,7 @@ export default function Home() {
                   ))}
                 </CarouselContent>
                 
-                <div className="absolute -left-2 -right-2 top-1/2 -translate-y-1/2 flex justify-between z-20">
+                <div className="absolute left-4 right-4 top-1/2 -translate-y-1/2 flex justify-between z-20">
                   <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                     <CarouselPrevious className="relative left-0 top-0 translate-y-0 bg-blue-900/40 border-blue-500/30 text-blue-300 hover:bg-blue-800/60 hover:text-white h-12 w-12 rounded-full shadow-lg shadow-blue-900/20" />
                   </motion.div>
@@ -868,7 +869,7 @@ export default function Home() {
             {/* Contact Information */}
             <div className="flex flex-wrap justify-center gap-6 mb-8">
               <a
-                href="mailto:info@neurax.ai"
+                href="mailto:agencianeurax@gmail.com"
                 className="flex items-center text-blue-300 hover:text-blue-200 transition-colors"
               >
                 <svg
@@ -886,7 +887,7 @@ export default function Home() {
                   <rect width="20" height="16" x="2" y="4" rx="2" />
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                 </svg>
-                info@neurax.ai
+                agencianeurax@gmail.com
               </a>
 
               <a
