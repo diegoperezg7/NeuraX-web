@@ -1,6 +1,15 @@
-- 👋 Hi, I’m @diegoperezg7
+# NeuraX - Web de Agencia de IA
 
-<!---
-diegoperezg7/diegoperezg7 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+Sitio web para mi agencia de automatización NeuraX. Estructura en React, conectada con formularios automatizados vía Make.
+
+## 🛠️ Tecnologías
+- React + Framer
+- Automatización con Make
+- Formularios IA para captar y procesar leads
+
+## 🎯 Objetivo
+Transmitir el valor de la automatización con IA y captar clientes potenciales. Web ligera, efectiva y orientada a conversión.
+
+## 📸 Capturas
+[Añade capturas de tu diseño]
+
