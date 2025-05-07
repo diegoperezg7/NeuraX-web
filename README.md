@@ -1,6 +1,6 @@
 # NeuraX - Web de Agencia de IA
 
-Sitio web para mi agencia de automatización NeuraX. Estructura en React, conectada con formularios automatizados vía Make.
+Sitio web para mi agencia de automatización NeuraX. Estructura en React, conectada con formularios automatizados vía n8n/Make.
 
 ## 🛠️ Tecnologías
 - TypeScript + CSS + JS
