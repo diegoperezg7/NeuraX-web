@@ -10,3 +10,4 @@ Sitio web para mi agencia de automatización NeuraX. Estructura en React, conect
 ## 🎯 Objetivo
 Transmitir el valor de la automatización con IA y captar clientes potenciales. Web ligera, efectiva y orientada a conversión.
 
+![image](https://github.com/user-attachments/assets/4cd08459-f937-4161-a81e-fa7d7ac2bd3d)
