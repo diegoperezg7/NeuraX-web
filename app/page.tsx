@@ -52,15 +52,15 @@ export default function Home() {
   // Función para obtener el icono del agente según su tipo
   const getAgentIcon = (iconType: string) => {
     const icons = {
-      Users: <Users className="h-10 w-10" />,
-      MessageSquare: <MessageSquare className="h-10 w-10" />,
-      FileText: <FileText className="h-10 w-10" />,
-      TrendingUp: <TrendingUp className="h-10 w-10" />,
-      BarChart3: <BarChart3 className="h-10 w-10" />,
-      DollarSign: <DollarSign className="h-10 w-10" />,
-      Shield: <Shield className="h-10 w-10" />
+      Users: <Users className="h-14 w-14 text-white" style={{ filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))' }} />,
+      MessageSquare: <MessageSquare className="h-14 w-14 text-white" style={{ filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))' }} />,
+      FileText: <FileText className="h-14 w-14 text-white" style={{ filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))' }} />,
+      TrendingUp: <TrendingUp className="h-14 w-14 text-white" style={{ filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))' }} />,
+      BarChart3: <BarChart3 className="h-14 w-14 text-white" style={{ filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))' }} />,
+      DollarSign: <DollarSign className="h-14 w-14 text-white" style={{ filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))' }} />,
+      Shield: <Shield className="h-14 w-14 text-white" style={{ filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))' }} />
     };
-    return icons[iconType as keyof typeof icons] || <Bot className="h-10 w-10" />;
+    return icons[iconType as keyof typeof icons] || <Bot className="h-14 w-14 text-white" style={{ filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))' }} />;
   };
 
   // Función para abrir el modal de un agente
@@ -561,24 +561,49 @@ export default function Home() {
 
       {/* AI Agents Section */}
       <section id="agents" className="py-20 relative z-10">
-        <div className="container mx-auto px-0 md:px-0 max-w-full">
+        <div className="relative w-full h-full">
+          {/* Fondo con degradado */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#000000] via-[#0A0A23] to-[#1A1A3F] opacity-80 z-0"></div>
+          
+          {/* Decoraciones de fondo tipo red neuronal */}
+          <div className="absolute inset-0 overflow-hidden z-0">
+            <div className="absolute w-full h-full opacity-10">
+              {/* Puntos decorativos */}
+              {Array.from({ length: 20 }).map((_, i) => (
+                <div 
+                  key={i} 
+                  className="absolute w-1 h-1 bg-blue-400 rounded-full"
+                  style={{
+                    top: `${Math.random() * 100}%`,
+                    left: `${Math.random() * 100}%`,
+                    boxShadow: '0 0 8px rgba(96, 165, 250, 0.8)',
+                    opacity: Math.random() * 0.5 + 0.2
+                  }}
+                />
+              ))}
+              
+              {/* Líneas de conexión */}
+              <div className="absolute top-1/4 left-1/4 w-full h-0.5 bg-gradient-to-r from-blue-500/0 via-blue-500/10 to-blue-500/0 transform -rotate-45"></div>
+              <div className="absolute top-3/4 left-1/4 w-full h-0.5 bg-gradient-to-r from-purple-500/0 via-purple-500/10 to-purple-500/0 transform rotate-45"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="w-full relative z-10">
           <div className="text-center mb-16 relative px-4">
-            {/* Decorative elements */}
-            <div className="absolute left-1/2 -top-10 w-40 h-40 bg-purple-500/5 rounded-full blur-xl -translate-x-1/2"></div>
-
             <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text relative z-10 tracking-tight">
               Agentes Inteligentes
             </h2>
             <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mb-6"></div>
-            <p className="text-xl text-blue-100/70 max-w-2xl mx-auto relative z-10 mb-10">
+            <p className="text-xl text-[#B3B3C3] max-w-2xl mx-auto relative z-10 mb-4">
               Nuestros agentes de IA especializados automatizan tareas específicas de tu negocio
+            </p>
+            <p className="text-lg text-blue-200 max-w-2xl mx-auto relative z-10 mb-10">
+              <span className="font-semibold">¿Necesitas algo único?</span> Ahora puedes <span className="font-bold text-blue-300">crear agentes totalmente personalizados</span> desde cero, adaptados a tus procesos y necesidades concretas.
             </p>
           </div>
 
-          <div className="relative w-full px-4 md:px-8 lg:px-12">
-            {/* Efecto de degradado para indicar desplazamiento */}
-            {/* Se eliminaron los degradados laterales */}
-            
+          <div className="relative w-full">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -587,25 +612,25 @@ export default function Home() {
             >
               <Carousel
                 opts={{
-                  align: "start",
+                  align: "center",
                   loop: true,
                   dragFree: true,
                   containScroll: false,
                   inViewThreshold: 0.1,
-                  skipSnaps: true,
+                  skipSnaps: false,
                 }}
-                className="w-full cursor-grab active:cursor-grabbing"
+                className="w-full cursor-grab active:cursor-grabbing overflow-visible"
               >
-                <CarouselContent className="-ml-2 md:-ml-4">
+                <CarouselContent className="-ml-0 md:-ml-0 overflow-visible">
                   {Object.values(agentData).map((agent, index) => (
-                    <CarouselItem key={agent.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 2xl:basis-1/4 h-[440px] py-3">
+                    <CarouselItem key={agent.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4 h-[480px] py-8">
                       <motion.div 
                         className="h-full"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         transition={{ type: "spring", stiffness: 400, damping: 10 }}
                       >
-            <AgentCard
+                        <AgentCard
                           icon={getAgentIcon(agent.iconType)}
                           name={agent.name}
                           description={agent.shortDescription}
@@ -618,12 +643,16 @@ export default function Home() {
                   ))}
                 </CarouselContent>
                 
-                <div className="absolute -left-2 -right-2 top-1/2 -translate-y-1/2 flex justify-between z-20">
+                <div className="absolute -left-4 -right-4 top-1/2 -translate-y-1/2 flex justify-between z-20">
                   <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                    <CarouselPrevious className="relative left-0 top-0 translate-y-0 bg-blue-900/40 border-blue-500/30 text-blue-300 hover:bg-blue-800/60 hover:text-white h-12 w-12 rounded-full shadow-lg shadow-blue-900/20" />
+                    <CarouselPrevious className="relative left-0 top-0 translate-y-0 bg-blue-900/40 border-none text-white hover:bg-blue-800/60 hover:text-white h-12 w-12 rounded-full shadow-lg shadow-blue-900/20" 
+                      style={{ boxShadow: '0 0 15px rgba(59, 130, 246, 0.3)' }}
+                    />
                   </motion.div>
                   <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                    <CarouselNext className="relative right-0 top-0 translate-y-0 bg-blue-900/40 border-blue-500/30 text-blue-300 hover:bg-blue-800/60 hover:text-white h-12 w-12 rounded-full shadow-lg shadow-blue-900/20" />
+                    <CarouselNext className="relative right-0 top-0 translate-y-0 bg-blue-900/40 border-none text-white hover:bg-blue-800/60 hover:text-white h-12 w-12 rounded-full shadow-lg shadow-blue-900/20" 
+                      style={{ boxShadow: '0 0 15px rgba(59, 130, 246, 0.3)' }}
+                    />
                   </motion.div>
                 </div>
               </Carousel>
@@ -635,7 +664,8 @@ export default function Home() {
                 <motion.div
                   key={i}
                   className="w-2 h-2 rounded-full bg-blue-500/30"
-                  whileHover={{ scale: 1.5, backgroundColor: "rgba(59, 130, 246, 0.6)" }}
+                  whileHover={{ scale: 1.5, backgroundColor: "rgba(159, 109, 255, 0.6)" }}
+                  style={{ boxShadow: '0 0 5px rgba(159, 109, 255, 0.3)' }}
                 />
               ))}
             </div>

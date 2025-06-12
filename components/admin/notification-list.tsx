@@ -11,6 +11,7 @@ import { es } from "date-fns/locale"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Calendar as CalendarComponent } from "@/components/ui/calendar"
+import { type DateRange } from "react-day-picker"
 
 interface Notification {
   id: string
@@ -22,11 +23,6 @@ interface Notification {
   created_at: string
 }
 
-interface DateRange {
-  from: Date | undefined
-  to: Date | undefined
-}
-
 export function NotificationList() {
   const [notifications, setNotifications] = useState<Notification[]>([])
   const [filteredNotifications, setFilteredNotifications] = useState<Notification[]>([])
@@ -35,7 +31,7 @@ export function NotificationList() {
 
   // Filtros
   const [typeFilter, setTypeFilter] = useState<string>("all")
-  const [dateRange, setDateRange] = useState<DateRange>({ from: undefined, to: undefined })
+  const [dateRange, setDateRange] = useState<DateRange | undefined>()
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
   const [availableTypes, setAvailableTypes] = useState<string[]>([])
   const [isFiltersActive, setIsFiltersActive] = useState(false)
@@ -100,7 +96,7 @@ export function NotificationList() {
     }
 
     // Filtrar por rango de fechas
-    if (dateRange.from) {
+    if (dateRange?.from) {
       filtered = filtered.filter((notification) => {
         const notificationDate = parseISO(notification.created_at)
         return isAfter(notificationDate, dateRange.from as Date)
@@ -108,7 +104,7 @@ export function NotificationList() {
       filtersActive = true
     }
 
-    if (dateRange.to) {
+    if (dateRange?.to) {
       filtered = filtered.filter((notification) => {
         const notificationDate = parseISO(notification.created_at)
         return isAfter(dateRange.to as Date, notificationDate)
@@ -117,12 +113,12 @@ export function NotificationList() {
     }
 
     setFilteredNotifications(filtered)
-    setIsFiltersActive(filtersActive)
+    setIsFiltersActive(typeFilter !== "all" || !!dateRange)
   }
 
   const clearFilters = () => {
     setTypeFilter("all")
-    setDateRange({ from: undefined, to: undefined })
+    setDateRange(undefined)
     setIsFiltersActive(false)
   }
 
@@ -153,23 +149,18 @@ export function NotificationList() {
   }
 
   const getPresetDateRange = (days: number) => {
-    const to = new Date()
-    const from = subDays(to, days)
-    setDateRange({ from, to })
+    setDateRange({ from: subDays(new Date(), days), to: new Date() })
     setIsCalendarOpen(false)
   }
 
   const formatDateRange = () => {
-    if (dateRange.from && dateRange.to) {
-      return `${format(dateRange.from, "dd/MM/yyyy")} - ${format(dateRange.to, "dd/MM/yyyy")}`
-    }
-    if (dateRange.from) {
-      return `Desde ${format(dateRange.from, "dd/MM/yyyy")}`
+    if (!dateRange?.from) {
+      return "Seleccionar fecha"
     }
     if (dateRange.to) {
-      return `Hasta ${format(dateRange.to, "dd/MM/yyyy")}`
+      return `${format(dateRange.from, "LLL dd, y")} - ${format(dateRange.to, "LLL dd, y")}`
     }
-    return "Seleccionar fechas"
+    return format(dateRange.from, "LLL dd, y")
   }
 
   if (isLoading) {
@@ -254,7 +245,7 @@ export function NotificationList() {
               <PopoverTrigger asChild>
                 <Button
                   variant="outline"
-                  className={`w-full justify-start text-left font-normal h-8 bg-blue-900/30 border-blue-500/20 text-blue-200 ${dateRange.from || dateRange.to ? "text-blue-100" : "text-blue-300/70"}`}
+                  className={`w-full justify-start text-left font-normal h-8 bg-blue-900/30 border-blue-500/20 text-blue-200 ${dateRange?.from || dateRange?.to ? "text-blue-100" : "text-blue-300/70"}`}
                 >
                   <Calendar className="mr-2 h-4 w-4" />
                   {formatDateRange()}
@@ -302,12 +293,9 @@ export function NotificationList() {
                 </div>
                 <CalendarComponent
                   mode="range"
-                  selected={{
-                    from: dateRange.from,
-                    to: dateRange.to,
-                  }}
+                  selected={dateRange}
                   onSelect={(range) => {
-                    setDateRange(range || { from: undefined, to: undefined })
+                    setDateRange(range)
                     if (range?.to) {
                       setIsCalendarOpen(false)
                     }

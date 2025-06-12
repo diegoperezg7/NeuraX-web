@@ -1,4 +1,5 @@
-/** @type {import('next').NextConfig} */
+// Archivo eliminado para evitar conflictos en Vercel
+* @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     domains: ['v0.blob.com'],
@@ -7,7 +8,8 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'v0.blob.com',
         port: '',
-        pathname: '/**',
+        pathname: '// Archivo eliminado para evitar conflictos en Vercel
+*',
       },
     ],
     unoptimized: true,

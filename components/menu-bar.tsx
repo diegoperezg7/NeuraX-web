@@ -65,7 +65,7 @@ const glowVariants = {
       scale: { duration: 0.5, type: "spring", stiffness: 300, damping: 25 },
     },
   },
-}
+} as const
 
 const navGlowVariants = {
   initial: { opacity: 0 },
@@ -76,14 +76,14 @@ const navGlowVariants = {
       ease: [0.4, 0, 0.2, 1],
     },
   },
-}
+} as const
 
 const sharedTransition = {
   type: "spring",
   stiffness: 100,
   damping: 20,
   duration: 0.5,
-}
+} as const
 
 export function MenuBar() {
   const { theme } = useTheme()

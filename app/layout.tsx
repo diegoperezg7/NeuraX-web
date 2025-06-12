@@ -32,7 +32,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${rajdhani.variable} ${audiowide.variable} ${rajdhani.className}`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" disableSystemTheme>
+                <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           {children}
         </ThemeProvider>
       </body>
